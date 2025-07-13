@@ -1,0 +1,8 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}

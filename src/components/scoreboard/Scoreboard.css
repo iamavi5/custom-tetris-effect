@@ -1,0 +1,45 @@
+.scoreboard-container {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .score-section, .level-section {
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .score-label, .level-label {
+    font-size: 18px;
+    color: #aaa;
+  }
+  
+  .score-value, .level-value {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .game-over-section {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .game-over-text {
+    color: #FF0D72;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .restart-button {
+    background-color: #0DFF72;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
