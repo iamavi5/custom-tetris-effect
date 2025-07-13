@@ -1,0 +1,66 @@
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0.7;
+    transition: .5s ease;
+    background-color: #393839;
+}
+
+.modal-content {
+    position: absolute;
+    top: 30%;
+    width: 400px;
+    padding: 25px;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.heading-section {
+    display: flex;
+    width: 100%;
+}
+
+.body-content {
+    width: 80%;
+}
+
+.description-text {
+    color: black;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.primary-button {
+    min-width: 100px;
+    color: White;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid green;
+    border-radius: 15px;
+    background: green;
+    padding: 10px;
+}
+
+.secondary-button {
+    min-width: 100px;
+    color: Green;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid green;
+    border-radius: 15px;
+    background: White;
+    padding: 10px;
+}
