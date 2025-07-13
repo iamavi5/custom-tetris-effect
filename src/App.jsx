@@ -12,7 +12,6 @@ const COLORS = [
   '#F538FF', '#FF8E0D', '#FFE138'
 ];
 
-// Tetromino shapes
 const SHAPES = [
   [[1, 1, 1, 1]],
   [[1, 1], [1, 1]],
@@ -44,7 +43,6 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [level, setLevel] = useState(1);
 
-  // Initialize new pieces
   const getRandomPiece = useCallback(() => {
     const randomShape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
     return {
@@ -53,33 +51,14 @@ const App = () => {
     };
   }, []);
 
-  // const newPiece = useCallback(() => {
-  //   const newPiece = {
-  //     ...nextPiece,
-  //     x: Math.floor(COLS / 2) - Math.floor(nextPiece.shape[0]?.length / 2) || 0,
-  //     y: 0
-  //   };
-
-  //   // Set next piece
-  //   setNextPiece(getRandomPiece());
-
-  //   // Check if game over
-  //   if (checkCollision(newPiece)) {
-  //     setGameOver(true);
-  //     return currentPiece; // Return current piece to prevent state update
-  //   }
-
-  //   return newPiece;
-  // }, [currentPiece, getRandomPiece, nextPiece]);
   const newPiece = useCallback(() => {
-    // First set the current piece to the next piece we already have
+
     const newCurrent = {
       ...nextPiece,
       x: Math.floor(COLS / 2) - Math.floor(nextPiece.shape[0]?.length / 2) || 0,
       y: 0
     };
-    
-    // Then generate a new next piece
+
     const newNextPiece = getRandomPiece();
     setNextPiece(newNextPiece);
     
@@ -91,7 +70,6 @@ const App = () => {
     return newCurrent;
   }, [currentPiece, getRandomPiece, nextPiece]);
 
-  // Check for collisions
   const checkCollision = (piece) => {
     if (!piece.shape) return true;
 
@@ -114,7 +92,6 @@ const App = () => {
     return false;
   };
 
-  // Lock the piece in place
   const lockPiece = useCallback(() => {
     const newGrid = [...grid];
 
@@ -135,7 +112,6 @@ const App = () => {
     setCurrentPiece(newPiece());
   }, [currentPiece, grid, newPiece]);
 
-  // Clear completed lines
   const clearLines = (gridToClear) => {
     let linesCleared = 0;
 
@@ -152,7 +128,6 @@ const App = () => {
       const points = linesCleared === 4 ? 800 : linesCleared * 100;
       setScore(prev => prev + points * level);
 
-      // Level up every 10 lines (adjust as needed)
       if (Math.floor((score + points) / 1000) > Math.floor(score / 1000)) {
         setLevel(prev => prev + 1);
       }
@@ -161,18 +136,15 @@ const App = () => {
     }
   };
 
-  // Rotate the piece
   const rotatePiece = () => {
     if (!currentPiece.shape.length) return;
 
     const newPiece = { ...currentPiece };
 
-    // Transpose matrix
     newPiece.shape = newPiece.shape[0].map((_, i) =>
       newPiece.shape.map(row => row[i])
     );
 
-    // Reverse each row to get a 90 degree rotation
     newPiece.shape.forEach(row => row.reverse());
 
     if (!checkCollision(newPiece)) {
@@ -180,7 +152,6 @@ const App = () => {
     }
   };
 
-  // Game loop
   useEffect(() => {
     if (gameOver) return;
 
@@ -202,7 +173,6 @@ const App = () => {
     return () => clearInterval(gameInterval);
   }, [gameOver, lockPiece, level]);
 
-  // Handle keyboard input
   useEffect(() => {
     if (gameOver) return;
 
@@ -247,7 +217,6 @@ const App = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [gameOver, currentPiece.shape.length, lockPiece]);
 
-  // Initialize game
   useEffect(() => {
     const initialNextPiece = getRandomPiece();
     setNextPiece(initialNextPiece);
@@ -258,7 +227,6 @@ const App = () => {
     });
   }, [COLS, getRandomPiece]);
 
-  // Reset game
   const resetGame = () => {
     setGrid(Array(ROWS).fill().map(() => Array(COLS).fill(0)));
     const initialNextPiece = getRandomPiece();

@@ -11,7 +11,6 @@ const Grid = ({ grid, currentPiece, blockSize, cols, rows }) => {
         gridTemplateColumns: `repeat(${cols}, ${blockSize}px)`
       }}
     >
-      {/* Render grid */}
       {grid.map((row, y) => 
         row.map((cell, x) => (
           <div 
@@ -26,7 +25,6 @@ const Grid = ({ grid, currentPiece, blockSize, cols, rows }) => {
         ))
       )}
       
-      {/* Render current piece */}
       {currentPiece.shape?.map((row, y) => 
         row.map((cell, x) => 
           cell ? (
